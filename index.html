@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+    <title>Sentence Sayer, Pronunciation Practice</title>
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='style.css'>
+</head>
+<body>
+    <div class='title'>
+    <h1>Sentence Sayer</h1>
+    <p><em>Have you ever wanted to test your pronunciation? Mouth and tongue position are important
+        parts of correct pronunciation. Practise here by attempting an English language tongue
+        twister and looking back at pictures of yourself speaking to check your positioning. Click
+        'Speak!' when you're ready to start practising.</em>
+    </p>
+    </div>
+    <div class='container'>
+    <div class='vid-container'>
+        <video id='video'>stream?</video>
+        <div class='row'>
+            <button id='photo-button'>Speak!</button>
+            <button id='clear-button'>Clear!</button>
+        </div>
+        <canvas id='canvas'></canvas>
+    </div>
+    <div class='photo-container'>
+        <div id='sentence'><span id='sentence-swap'>Your Sentence will appear here.</span><span><button id='swap'>Swap</button></span></div>
+        <div id='photos'></div>
+    </div>
+    </div>
+
+    <script src='scripts.js'></script>
+</body>
+</html>
