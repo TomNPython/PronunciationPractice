@@ -9,3 +9,4 @@ There are buttons to start the video recording, clear the picture gallery, and s
 To Do:
 - Add more tongue twisters
 - ~Fix responsiveness~
+- Fix double clicking start/restart
