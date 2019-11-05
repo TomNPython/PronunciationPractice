@@ -6,6 +6,8 @@ will take several pictures of them to highlight how they move their mouths. The 
 
 There are buttons to start the video recording, clear the picture gallery, and swap the tongue twister for something different.
 
+Published at https://tomnpython.github.io/PronunciationPractice/
+
 To Do:
 - Add more tongue twisters
 - ~Fix responsiveness~
