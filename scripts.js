@@ -1,7 +1,9 @@
+//video elements
 let width = 400
 let height = 0
 let streaming = false
 
+//DOM elements
 const video = document.getElementById('video')
 const canvas = document.getElementById('canvas')
 const photos = document.getElementById('photos')
@@ -10,6 +12,7 @@ const clearButton = document.getElementById('clear-button')
 const sentence = document.getElementById('sentence-swap')
 const swap = document.getElementById('swap')
 
+//start video playing
 navigator.mediaDevices.getUserMedia({video: true})
     .then(stream => {
         video.srcObject = stream
@@ -17,6 +20,7 @@ navigator.mediaDevices.getUserMedia({video: true})
     })
     .catch(err => { console.log(`Error: ${err}`)})
 
+//take a picture from the video stream and display it (NB: refactor?)
 function takePicture() {
     context = canvas.getContext('2d')
 
@@ -34,26 +38,41 @@ function takePicture() {
 
     photos.appendChild(image)
 }
-let counter = 0
 
+let counter = 0; // how many pics taken
+let isPlaying = false; // is the video recording pics now
+let cleared = false; // has the container of pics been cleared
+
+
+// start taking pictures using video stream
 function timer() {
     counter = 0
-    clearCanvas()
+    photos.innerHTML = ''
+    cleared = false
+    if (!isPlaying) {
     let pictureReel = setInterval(() => {
-        takePicture();
-
-        counter++
-        if (counter >= 10) {
+        if (counter >= 10 || cleared) {
             clearInterval(pictureReel)
+            isPlaying = false
+        }
+        if (!cleared) {
+        takePicture();
+        
+        counter++
         }
     }, 1000)
-}
+    isPlaying = true
+}}
 
+//stop taking pictures using the video screen and remove them from container (NB: refactor
+// into separate functions!)
 function clearCanvas() {
     photos.innerHTML = '';
-    counter = 0
+    cleared = true;
+    isPlaying = false
 }
 
+//Sentences to be displayed
 const tongueTwisters = [`"Peter Piper picked a peck of pickled peppers. 
 A peck of pickled peppers Peter Piper picked. If Peter Piper picked a peck of pickled peppers? 
 Where's the peck of pickled peppers Peter Piper picked?"`, `"How much wood would a woodchuck chuck 
@@ -65,11 +84,14 @@ and it was better than the butter Betty bought before."`, `"Silly Sally swiftly 
 The seven silly sheep Silly Sally shooed
 Shilly-shallied south."`]
 
+//change the sentence displayed
 function swapSentence() {
     let randInt = Math.floor(Math.random() * tongueTwisters.length)
     console.log(randInt)
     sentence.textContent = tongueTwisters[randInt]
 }
+
+//Event listeners
 
 video.addEventListener('canplay', function(e) {
     if (!streaming) {
@@ -90,4 +112,5 @@ photoButton.addEventListener('click', function(e) {
 clearButton.addEventListener('click', clearCanvas)
 
 swap.addEventListener('click', swapSentence)
+
 photoButton.addEventListener('click', swapSentence)
