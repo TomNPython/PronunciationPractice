@@ -11,4 +11,4 @@ Published at https://tomnpython.github.io/PronunciationPractice/
 To Do:
 - Add more tongue twisters
 - ~Fix responsiveness~
-- Fix double clicking start/restart
+- ~Fix double clicking start/restart~
